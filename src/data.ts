@@ -27,7 +27,7 @@ const data: Card[] = [
     },
     {
         dirigente: 'Sadi',
-        auxiliar: 'Sadi',
+        auxiliar: 'Patrik',
         data: '12 de Julho'
     },
     {
