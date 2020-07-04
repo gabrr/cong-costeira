@@ -1,40 +1,23 @@
 import React from 'react';
 import cards from './data'
 import styled from "styled-components";
+import { Card } from './components/organisms/card';
+import { AddButton } from './components/atoms/addButton';
 
 function App() {
   return (
     <Div className="App">
       <header>
-        Designaçōes Ministério de Campo
+        Designaçōes<br/> Ministério de Campo
       </header>
       <main>
         <div className="cards">
-          {cards.map(card => (
-            <div className="card">
-              <div className="row">
-                <p className="title">
-                  Dirigente
-                </p>
-                <p className="name">
-                  {card.dirigente}
-                </p>
-              </div>
-              <div className="row">
-                <p className="title">
-                  Auxiliar
-                </p>
-                <p className="name">
-                  {card.auxiliar}
-                </p>
-              </div>
-              <div className="date-display">
-                {card.data}
-              </div>
-            </div>
+          {cards.map(data => (
+            <Card key={data.data} {...data}/>            
           ))}
         </div>
       </main>
+      <AddButton/>
     </Div>
   );
 }
@@ -46,6 +29,7 @@ const Div = styled.div`
   text-align: center;
   font-family: 'Roboto', sans-serif;
   height: 100%;
+  padding-bottom: 100px;
 
   .cards {
     display: grid;
@@ -69,6 +53,7 @@ const Div = styled.div`
 
   .card {
     width: 80%;
+    max-width: 320px;
     display: grid;
     grid-template-columns: 1fr;
     background-color: rgba(255, 255, 255, 0.1);
@@ -95,5 +80,17 @@ const Div = styled.div`
     color: #444;
     padding: 5px 10px;
     border-radius: 5px;
+  }
+
+  @media (min-width: 760px) {
+    .cards {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1020px) {
+    .cards {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
   }
 ` 
