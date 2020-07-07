@@ -25,8 +25,6 @@ export const CustomDateInput = (props: Props) => {
 
     const today = `${year}-${month}-${day}`
 
-    console.log(today)
-
     return (
         <Div>
             <label>{props.text || ''}</label>
