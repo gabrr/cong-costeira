@@ -1,10 +1,10 @@
-import Mongoose from 'mongoose'
+import mongoose from 'mongoose'
 
-export default Mongoose.connect(process.env.DB_HOST || '', {
+export default mongoose.connect(process.env.DB_HOST || '', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-.then((e) => {
-    console.log('Connected', e)
+.then(() => {
+    console.log('Connecting to database', )
 })
 .catch(err => console.log(err))
