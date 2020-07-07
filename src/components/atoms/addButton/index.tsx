@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-export const AddButton: React.FC = (customAction: any) => {
+export const AddButton = ({handleShowCard}: any ) => {
     
     const [clicked, setclicked] = useState(false)
 
     const handleClick = () => {
         setclicked(!clicked)
+        handleShowCard()
     }
-
 
     return (
         <Div onClick={handleClick}>
@@ -27,6 +27,7 @@ const Div = styled.div`
     bottom: 25px;
     right: 4vw;
     box-shadow: 0px 0px 23px -9px rgba(2, 95, 4, 0.7);
+    cursor: pointer;
 
     .vertical, .horizontal {
         height: 20px;

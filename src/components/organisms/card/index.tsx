@@ -1,12 +1,11 @@
-import React from 'react'
+import React, { memo } from 'react'
 
-export const Card = (card: any) => {
+const Card = (card: any) => {
     return (
         <div className="card">
             <div className="row">
                 <p className="title">
                     Dirigente
-                    {console.log(card)}
                 </p>
                 <p className="name">
                     {card.dirigente}
@@ -26,3 +25,5 @@ export const Card = (card: any) => {
         </div>
     )
 }
+
+export default memo(Card)

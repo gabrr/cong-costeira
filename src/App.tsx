@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cards from './data'
 import styled from "styled-components";
-import { Card } from './components/organisms/card';
+import Card from './components/organisms/card';
 import { AddButton } from './components/atoms/addButton';
+import { AddCard } from './components/organisms/addCard';
 
 function App() {
+  const [showCard, setshowCard] = useState(false)
+
+  const handleShowCard = () => {
+    setshowCard(!showCard);
+  }
+
   return (
     <Div className="App">
       <header>
@@ -17,7 +24,8 @@ function App() {
           ))}
         </div>
       </main>
-      <AddButton/>
+      <AddCard {...{showCard}} />
+      <AddButton {...{handleShowCard}} />
     </Div>
   );
 }
@@ -58,7 +66,7 @@ const Div = styled.div`
     grid-template-columns: 1fr;
     background-color: rgba(255, 255, 255, 0.1);
     margin: 30px auto;
-    padding: 15px 15px;
+    padding: 15px 25px;
     border-radius: 5px;
     position: relative;
   }
