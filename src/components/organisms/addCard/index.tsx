@@ -17,60 +17,38 @@ export const AddCard = ({showCard}: any) => {
 }
 
 const Div = styled.div`
-    .addCard {
+    .addCard.false {
         position: fixed;
-        left: 50%;
-        transition: 1000ms cubic-bezier(.6,.31,0,1.21); 
-        -moz-transition: 1000ms cubic-bezier(.6,.31,0,1.21); 
-        -webkit-transition: 1000ms cubic-bezier(.6,.31,0,1.21); 
-        -webkit-transform: translateX(-50%) translateY(70px) !important;
-        -moz-transform: translateX(-50%) translateY(70px) !important;
-        transform: translateX(-50%) translateY(70px) !important;
-        opacity: 0;
-    }
-    .addCard.true {
-        position: fixed;
-        height: auto;
-        /* min-height: 100px; */
-        /* width: calc(90% - 80px); */
-        /* max-width: 300px; */
         left: 50%;
         top: 0;
-        padding: 75px 40px;
-        background-color: #27314e;
-        transition: 1000ms cubic-bezier(.6,.31,0,1.21); 
-        -moz-transition: 1000ms cubic-bezier(.6,.31,0,1.21); 
-        -webkit-transition: 1000ms cubic-bezier(.6,.31,0,1.21); 
-        -webkit-transform: translateX(-50%) translateY(70px) !important;
-        -moz-transform: translateX(-50%) translateY(70px) !important;
-        transform: translateX(-50%) translateY(70px) !important;
-        opacity: 1;
+        padding: 50px 30px;
+        transition: 400ms ease; 
+        transform: translate(-50%, -350px);
+        opacity: 0;
         pointer-events: all;
         border-radius: 8px;
         box-shadow: 0 0 31px -9px rgba(0,0,0,0.5);
     }
-    .addCard.false {
-        height: auto;
-        min-height: 100px;
-        width: 90%;
-        max-width: 300px;
+
+    .addCard.true {
+        position: fixed;
         left: 50%;
         top: 0;
-        padding: 75px 40px;
-        position: fixed;
-        transition: 400ms cubic-bezier(.6,.31,.08,1.45); 
-        transform: translateY(-350px) translateX(-50%) !important;
+        padding: 50px 30px;
+        background-color: #27314e;
+        transition: all 1s cubic-bezier(.6,.31,0,1.21); 
+        transform: translate(-50%, 80px);
         opacity: 1;
-        pointer-events: all;
+        border-radius: 8px;
+        box-shadow: 0 0 31px -9px rgba(0,0,0,0.5);
     }
-
     .inputDiv {
         margin: 10px 0;
         min-width: 200px;
     }
 
     .button {
-        margin-top: 20px
+        margin-top: 30px
     }
 
     @media (min-width: 780px) {
