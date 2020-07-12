@@ -6,21 +6,6 @@ interface Card {
 
 const data: Card[] = [
     {
-        dirigente: 'Josemberg',
-        auxiliar: 'Vitor Malagoli',
-        data: '28 de Junho'
-    },
-    {
-        dirigente: 'Júlio',
-        auxiliar: 'Richard',
-        data: '4 de Julho'
-    },
-    {
-        dirigente: 'Israel Cerqueira',
-        auxiliar: 'Israel Cerqueira',
-        data: '5 de Julho'
-    },
-    {
         dirigente: 'Richard',
         auxiliar: 'Richard',
         data: '11 de Julho'

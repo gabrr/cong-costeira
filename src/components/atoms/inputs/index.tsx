@@ -33,7 +33,14 @@ const Div = styled.div`
         outline: none;
         border: none;
         padding: 0 8px;
+        -webkit-appearance: none;
+        color: #444;
     }
+
+    input::placeholder {
+        color: #444;
+    }
+    
 
     
 
