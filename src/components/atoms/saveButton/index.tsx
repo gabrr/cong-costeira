@@ -18,8 +18,8 @@ const Div = styled.div`
     min-width: 100px;
     width: max-content;
     margin: 0 auto;
-    padding: 10px 20px;
+    padding: 10px 15px;
     background: #4a5a8c;
     border-radius: 4px;
-
+    font-size: 13px;
 `

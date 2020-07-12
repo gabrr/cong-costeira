@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { zeroAtLeft } from '../../../utils/numbers'
 
 interface Props {
     type?: string,
@@ -16,12 +17,21 @@ export const CustomInput = (props: Props) => (
 )
 
 
-export const CustomDateInput = (props: Props) => (
-    <Div>
-        <label>{props.text || ''}</label>
-        <input className={props.name} type="date"/>
-    </Div>
-)
+export const CustomDateInput = (props: Props) => {
+
+    const day = zeroAtLeft(new Date().getUTCMonth()) 
+    const month = zeroAtLeft(new Date().getUTCDate()) 
+    const year = zeroAtLeft(new Date().getFullYear()) 
+
+    const today = `${year}-${month}-${day}`
+
+    return (
+        <Div>
+            <label>{props.text || ''}</label>
+            <input className={props.name} value={today} type="date"/>
+        </Div>
+    )
+}
 const Div = styled.div`
     text-align: left;
 
@@ -34,7 +44,6 @@ const Div = styled.div`
         border: none;
         padding: 0 8px;
         -webkit-appearance: none;
-        color: #444;
     }
 
     input::placeholder {
