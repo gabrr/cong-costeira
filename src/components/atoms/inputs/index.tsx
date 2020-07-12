@@ -43,6 +43,7 @@ const Div = styled.div`
         outline: none;
         border: none;
         padding: 0 8px;
+        color: #444;
         -webkit-appearance: none;
     }
 
@@ -50,6 +51,7 @@ const Div = styled.div`
         color: #444;
     }
     
+
 
     
 
