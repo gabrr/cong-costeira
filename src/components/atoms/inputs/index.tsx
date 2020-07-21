@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { zeroAtLeft } from '../../../utils/numbers'
 
@@ -18,17 +18,17 @@ export const CustomInput = (props: Props) => (
 
 
 export const CustomDateInput = (props: Props) => {
-
-    const day = zeroAtLeft(new Date().getUTCMonth()) 
-    const month = zeroAtLeft(new Date().getUTCDate()) 
+    const day = zeroAtLeft(new Date().getUTCDate()) 
+    const month = zeroAtLeft(new Date().getUTCMonth() + 1) 
     const year = zeroAtLeft(new Date().getFullYear()) 
 
-    const today = `${year}-${month}-${day}`
+    const [today, settoday] = useState(`${year}-${month}-${day}`)
+
 
     return (
         <Div>
             <label>{props.text || ''}</label>
-            <input className={props.name} value={today} type="date"/>
+            <input className={props.name} onChange={(x) => settoday(x.target.value)} value={today} type="date"/>
         </Div>
     )
 }

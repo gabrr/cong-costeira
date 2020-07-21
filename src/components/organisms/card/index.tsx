@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
+import { AppointmentsType } from '../../../types/appoitments'
 
-const Card = (card: any) => {
+const Card = (card: AppointmentsType) => {
     return (
         <div className="card">
             <div className="row">
@@ -8,7 +9,7 @@ const Card = (card: any) => {
                     Dirigente
                 </p>
                 <p className="name">
-                    {card.dirigente}
+                    {card.name1}
                 </p>
             </div>
             <div className="row">
@@ -16,11 +17,11 @@ const Card = (card: any) => {
                     Auxiliar
                 </p>
                 <p className="name">
-                    {card.auxiliar}
+                    {card.name2}
                 </p>
             </div>
             <div className="date-display">
-                {card.data}
+                {card.when}
             </div>
         </div>
     )

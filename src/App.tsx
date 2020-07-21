@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
-import cards from './data'
+import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import Card from './components/organisms/card';
 import { AddButton } from './components/atoms/addButton';
 import { AddCard } from './components/organisms/addCard';
+import { api } from './api';
+import { AppointmentsType } from './types/appoitments'
 
 function App() {
   const [showCard, setshowCard] = useState(false)
+  const [loading, setloading] = useState(true)
+  const [appts, setappts] = useState([])
 
   const handleShowCard = () => {
     setshowCard(!showCard);
   }
+
+  useEffect(() => {
+    api.get('appointments/')
+    .then(({ data }) => {
+      setappts(data)
+      setloading(false)
+    })
+  }, [])
 
   return (
     <Div className="App">
@@ -18,11 +29,15 @@ function App() {
         Designaçōes<br/> Ministério de Campo
       </header>
       <main>
-        <div className="cards">
-          {cards.map(data => (
-            <Card key={data.data} {...data}/>            
-          ))}
-        </div>
+        {
+          loading ? <h1>Loading...</h1> : (
+            <div className="cards">
+              {appts.map((appt: AppointmentsType) => (
+                <Card key={appt._id} {...appt}/>            
+              ))}
+            </div>
+          )
+        }
       </main>
       <AddCard {...{showCard}} />
       <AddButton {...{handleShowCard}} />
