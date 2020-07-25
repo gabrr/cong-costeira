@@ -1,16 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { CustomInput, CustomDateInput } from '../../atoms/inputs'
 import { SaveButton } from '../../atoms/saveButton'
+import { api } from '../../../api'
 
 export const AddCard = ({showCard}: any) => {
+    const [addCardData, setaddCardData] = useState({})
+
+    const handleAddAppointment = (data: any) => {
+        setaddCardData({
+            ...addCardData,
+            ...data
+        })
+    }
+
+    const saveData = () => {
+        api.post('appointments/', addCardData)
+            .then(data => console.log(data, 'data sent'))
+    }
+
     return (
         <Div>
             <div className={`addCard ${showCard}`}>
-                <CustomInput name="inputDiv" placeholder={'Nome do Dirigente'} />
-                <CustomInput name="inputDiv" placeholder={'Nome do Auxiliar'} />
-                <CustomDateInput name="inputDiv" />
-                <SaveButton name={'button'} text={'Salvar'} />
+                <h3 className="title">Adicionar Designação</h3>
+                <CustomInput action={handleAddAppointment} name="name1" placeholder={'Nome do Dirigente'} />
+                <CustomInput action={handleAddAppointment} name="name2" placeholder={'Nome do Auxiliar'} />
+                <CustomDateInput action={handleAddAppointment} name="inputDiv" />
+                <SaveButton name={'button'} text={'Salvar'} action={saveData} />
             </div>
         </Div>
     )
@@ -49,6 +65,10 @@ const Div = styled.div`
 
     .button {
         margin-top: 30px
+    }
+
+    .title {
+        margin-bottom: 20px
     }
 
     @media (min-width: 780px) {

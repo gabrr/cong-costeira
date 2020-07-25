@@ -3,12 +3,13 @@ import styled from 'styled-components'
 
 interface Props {
     text?: string,
-    name?: string
+    name?: string,
+    action: Function
 }
 
 export const SaveButton = (props: Props) => {
     return (
-        <Div className={props.name || 'button'} >
+        <Div className={props.name || 'button'} onClick={() => props.action()}>
             {props.text}
         </Div>
     )

@@ -6,13 +6,18 @@ interface Props {
     type?: string,
     placeholder?: string,
     text?: string,
-    name?: string
+    name: string,
+    action?: Function
 }
 
 export const CustomInput = (props: Props) => (
     <Div>
         <label>{props.text || ''}</label>
-        <input className={props.name} type={props.type || 'text'} placeholder={props.placeholder || 'Nome'} />
+        <input 
+            onChange={(x) => props.action && props.action({ [props.name]: x.target.value })} 
+            className={'inputDiv'} type={props.type || 'text'} 
+            placeholder={props.placeholder || 'Nome'} 
+        />
     </Div>
 )
 
@@ -24,11 +29,15 @@ export const CustomDateInput = (props: Props) => {
 
     const [today, settoday] = useState(`${year}-${month}-${day}`)
 
+    const handleInputChange = (x: React.ChangeEvent<HTMLInputElement>) => {
+        settoday(x.target.value)
+        props.action && props.action({ when: x.target.value })
+    }
 
     return (
         <Div>
             <label>{props.text || ''}</label>
-            <input className={props.name} onChange={(x) => settoday(x.target.value)} value={today} type="date"/>
+            <input className={props.name} onChange={handleInputChange} value={today} type="date"/>
         </Div>
     )
 }
