@@ -4,16 +4,86 @@ interface Card {
     data: string
 }
 
-const data: Card[] = [
+interface Card2 {
+    Indicador: string,
+    Video: string,
+    data: string
+}
+
+const data2: Card2[] = [
     {
-        dirigente: 'Richard',
-        auxiliar: 'Richard',
-        data: '11 de Julho'
+        Indicador: 'Israel Cerqueira',
+        Video: 'Vitor Malagoli',
+        data: '26 de Julho'
     },
     {
-        dirigente: 'Sadi',
-        auxiliar: 'Patrik',
-        data: '12 de Julho'
+        Indicador: 'Alexandre Malagoli',
+        Video: 'Patrik França',
+        data: '30 de Julho'
+    },
+    {
+        Indicador: 'Patrik França',
+        Video: 'Richard',
+        data: '06 de Agosto'
+    },
+    {
+        Indicador: 'Israel Cerqueira',
+        Video: 'Alexandre',
+        data: '9 de Agosto'
+    },
+    {
+        Indicador: 'Richard',
+        Video: 'Israel Cerqueira',
+        data: '13 de Agosto'
+    },
+    {
+        Indicador: 'Vitor',
+        Video: 'Richard',
+        data: '16 de Agosto'
+    },
+    {
+        Indicador: 'Josemberg',
+        Video: 'Patrik França',
+        data: '20 de Agosto'
+    },
+    {
+        Indicador: 'Richard',
+        Video: 'Gabriel Oliveira',
+        data: '23 de Agosto'
+    },
+    {
+        Indicador: 'Alexandre Malagoli',
+        Video: 'Israel Cerqueira',
+        data: '27 de Agosto'
+    },
+    {
+        Indicador: 'Vitor Malagoli',
+        Video: 'Josemberg',
+        data: '30 de Agosto'
+    },
+    {
+        Indicador: 'Patrik França',
+        Video: 'Gabriel Oliveira',
+        data: '30 de Setembro'
+    },
+    {
+        Indicador: 'Israel Cerqueira',
+        Video: 'Vitor Malagoli',
+        data: '06 de Setembro'
+    },
+
+]
+
+const data: Card[] = [
+    {
+        dirigente: 'Vitor',
+        auxiliar: 'Israel',
+        data: '26 de Julho'
+    },
+    {
+        dirigente: 'Patrik',
+        auxiliar: 'Alexandre',
+        data: '30 de Julho'
     },
     {
         dirigente: 'Diorge',
@@ -68,4 +138,4 @@ const data: Card[] = [
 
 ]
 
-export default data
+export default data2

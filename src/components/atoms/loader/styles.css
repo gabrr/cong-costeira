@@ -1,0 +1,42 @@
+#Loader {
+    position: fixed;
+    top: 36%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 60px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes increase {
+    0% {
+    transform: translateY(0);
+    }
+    50% {
+    transform: translateY(-10px);
+    }
+    100% {
+    transform: translateY(5px);
+    }
+}
+
+#Loader div {
+    height: 15px;
+    width: 15px;
+    background-color: #FFF;
+    border-radius: 100%;
+    margin: 2px;
+    animation: increase 500ms infinite ease;
+}
+
+#Loader .ball1 {
+    animation-delay: 0ms;
+}
+#Loader .ball2 {
+    animation-delay: 100ms;
+}
+#Loader .ball3 {
+    animation-delay: 200ms;
+}

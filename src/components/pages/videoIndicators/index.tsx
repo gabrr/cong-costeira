@@ -8,10 +8,12 @@ import { AppointmentsType } from '../../../types/appoitments'
 import { Provider, useSelector, useDispatch } from 'react-redux'
 import store from '../../../redux'
 import { State } from '../../../redux/reducers/_types';
-import { addAppointment } from '../../../redux/actions/appointments';
+import data2 from '../../../data';
+import Card2 from '../../organisms/card2';
 import { Loader } from '../../atoms/loader';
 
-const Home = () => {
+
+const VideoIndicators = () => {
   const [showCard, setshowCard] = useState(false)
   const [loading, setloading] = useState(true)
   const [clicked, setclicked] = useState(false)
@@ -28,25 +30,14 @@ const Home = () => {
 
   console.log('loaded home')
 
-  const loadAppointments = () => {
-    !!!appointments.length && (
-      api.get('appointments/')
-        .then(({ data }) => {
-          dispatch(addAppointment([...data]))
-          setloading(false)
-        })
-    )
-    setloading(false)
-  }
-
   useEffect(() => {
-    loadAppointments()
+    setloading(false)
   }, [])
 
-  const isItTheCurrentUser = (obj: AppointmentsType) => {
+  const isItTheCurrentUser = (obj: any) => {
     console.log(user, 'user')
     
-    if( new RegExp(`${user}`, 'gi').test(obj.name1) || new RegExp(`${user}`,  'gi').test(obj.name2)) {
+    if( new RegExp(`${user}`, 'gi').test(obj.Indicador) || new RegExp(`${user}`,  'gi').test(obj.Video)) {
       return 'selected'
     }
     return ''
@@ -58,11 +49,12 @@ const Home = () => {
         <main>
           {loading ? <Loader/> : (
               <div className="cards">
-                {appointments.map((appt: AppointmentsType) => (
-                  <Card 
-                    selected={isItTheCurrentUser(appt)} 
-                    key={appt._id}
-                    {...appt}/>
+                {data2.map((appointment: any, index) => (
+                    <Card2 
+                        selected={isItTheCurrentUser(appointment)}
+                        key={index} 
+                        {...appointment} 
+                    />
                 ))}
               </div>
           )}
@@ -74,7 +66,7 @@ const Home = () => {
   );
 }
 
-export default memo(Home)
+export default memo(VideoIndicators)
 
 const Div = styled.div`
   color: rgba(255, 255, 255, 0.8);
