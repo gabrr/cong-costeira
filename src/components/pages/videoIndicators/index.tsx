@@ -1,14 +1,11 @@
 import React, { useState, useEffect, memo } from 'react';
 import styled from "styled-components";
-import Card from '../../organisms/card';
 import { AddButton } from '../../atoms/addButton';
 import { AddCard } from '../../organisms/addCard';
-import { api } from '../../../api';
-import { AppointmentsType } from '../../../types/appoitments'
-import { Provider, useSelector, useDispatch } from 'react-redux'
+import { Provider, useSelector } from 'react-redux'
 import store from '../../../redux'
 import { State } from '../../../redux/reducers/_types';
-import data2 from '../../../data';
+import data from '../../../data';
 import Card2 from '../../organisms/card2';
 import { Loader } from '../../atoms/loader';
 
@@ -21,22 +18,16 @@ const VideoIndicators = () => {
   const appointments = useSelector((state: State) => state.appointments)
   const user = useSelector((state: any) => state.user)
 
-  const dispatch = useDispatch()
-
   const handleShowCard = () => {
     setshowCard(!showCard);
     setclicked(!clicked)
   }
 
-  console.log('loaded home')
-
   useEffect(() => {
     setloading(false)
   }, [])
 
-  const isItTheCurrentUser = (obj: any) => {
-    console.log(user, 'user')
-    
+  const isItTheCurrentUser = (obj: any) => {    
     if( new RegExp(`${user}`, 'gi').test(obj.Indicador) || new RegExp(`${user}`,  'gi').test(obj.Video)) {
       return 'selected'
     }
@@ -49,7 +40,7 @@ const VideoIndicators = () => {
         <main>
           {loading ? <Loader/> : (
               <div className="cards">
-                {data2.map((appointment: any, index) => (
+                {data.data2.map((appointment: any, index) => (
                     <Card2 
                         selected={isItTheCurrentUser(appointment)}
                         key={index} 

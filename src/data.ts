@@ -138,4 +138,4 @@ const data: Card[] = [
 
 ]
 
-export default data2
+export default { data2, data }

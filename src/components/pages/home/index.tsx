@@ -41,7 +41,7 @@ const Home = () => {
 
   useEffect(() => {
     loadAppointments()
-  }, [])
+  }, [dispatch])
 
   const isItTheCurrentUser = (obj: AppointmentsType) => {
     console.log(user, 'user')
