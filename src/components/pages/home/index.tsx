@@ -28,7 +28,7 @@ const Home = () => {
 
   console.log('loaded home')
 
-  const loadAppointments = () => {
+  useEffect(() => {
     !!!appointments.length && (
       api.get('appointments/')
         .then(({ data }) => {
@@ -36,12 +36,7 @@ const Home = () => {
           setloading(false)
         })
     )
-    setloading(false)
-  }
-
-  useEffect(() => {
-    loadAppointments()
-  }, [dispatch])
+  }, [dispatch, appointments])
 
   const isItTheCurrentUser = (obj: AppointmentsType) => {
     console.log(user, 'user')
