@@ -36,6 +36,7 @@ const Home = () => {
           setloading(false)
         })
     )
+    setloading(false)
   }, [dispatch, appointments])
 
   const isItTheCurrentUser = (obj: AppointmentsType) => {
