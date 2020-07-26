@@ -7,21 +7,25 @@ import { api } from '../../../api';
 import { AppointmentsType } from '../../../types/appoitments'
 import { Provider, useSelector, useDispatch } from 'react-redux'
 import store from '../../../redux'
-import { State } from '../../../redux/reducers/types';
+import { State } from '../../../redux/reducers/_types';
 import { addAppointment } from '../../../redux/actions/appointments';
 
 const Home = () => {
   const [showCard, setshowCard] = useState(false)
   const [loading, setloading] = useState(true)
+  const [clicked, setclicked] = useState(false)
 
   const appointments = useSelector((state: State) => state.appointments)
+  const user = useSelector((state: any) => state.user)
+
   const dispatch = useDispatch()
 
   const handleShowCard = () => {
     setshowCard(!showCard);
+    setclicked(!clicked)
   }
 
-  console.log('home loaded')
+  console.log('loaded home')
 
   useEffect(() => {
     api.get('appointments/')
@@ -31,6 +35,15 @@ const Home = () => {
     })
   }, [dispatch])
 
+  const isItTheCurrentUser = (obj: AppointmentsType) => {
+    console.log(user, 'user')
+    
+    if( new RegExp(`${user}`, 'gi').test(obj.name1) || new RegExp(`${user}`,  'gi').test(obj.name2)) {
+      return 'selected'
+    }
+    return ''
+  }
+
   return (
     <Provider store={store}>
       <Div className="App">
@@ -38,18 +51,19 @@ const Home = () => {
           Designaçōes<br/> Ministério de Campo
         </header>
         <main>
-          {
-            loading ? <h1>Loading...</h1> : (
+          {loading ? <h1>Loading...</h1> : (
               <div className="cards">
                 {appointments.map((appt: AppointmentsType) => (
-                  <Card key={appt._id} {...appt}/>            
+                  <Card 
+                    selected={isItTheCurrentUser(appt)} 
+                    key={appt._id}
+                    {...appt}/>
                 ))}
               </div>
-            )
-          }
+          )}
         </main>
-        <AddCard {...{showCard, handleShowCard}} />
-        <AddButton {...{handleShowCard}} />
+        <AddCard {...{showCard, handleShowCard, setclicked, clicked}} />
+        <AddButton {...{handleShowCard, clicked}} />
       </Div>
     </Provider>
   );
@@ -97,7 +111,7 @@ const Div = styled.div`
   }
 
   .selected {
-    background-color: rgba(255, 255, 255, 0.5) !important;
+    background-color: rgb(1 11 31 / 50%) !important;
   }
 
   header {

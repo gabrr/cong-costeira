@@ -1,15 +1,24 @@
 import React, { memo } from 'react'
-import { AppointmentsType } from '../../../types/appoitments'
 
-const Card = (card: AppointmentsType) => {
+interface Props {
+    _id?: string,
+    name1: string,
+    name2: string,
+    name3?: string,
+    when: string,
+    selected?: string
+}
+
+
+const Card = ({ name1, name2, when, selected }: Props) => {
     return (
-        <div className="card">
+        <div className={`card ${selected}`}>
             <div className="row">
                 <p className="title">
                     Dirigente
                 </p>
                 <p className="name">
-                    {card.name1}
+                    {name1}
                 </p>
             </div>
             <div className="row">
@@ -17,11 +26,11 @@ const Card = (card: AppointmentsType) => {
                     Auxiliar
                 </p>
                 <p className="name">
-                    {card.name2}
+                    {name2}
                 </p>
             </div>
             <div className="date-display">
-                {card.when}
+                {when}
             </div>
         </div>
     )

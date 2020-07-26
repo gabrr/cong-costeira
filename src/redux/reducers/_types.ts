@@ -1,4 +1,4 @@
-import { AppointmentsType } from './../../types/appoitments';
+import { AppointmentsType } from '../../types/appoitments';
 
 export interface State {
     appointments: AppointmentsType[],

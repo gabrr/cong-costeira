@@ -1,12 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
-export const AddButton = ({handleShowCard}: any ) => {
-    
-    const [clicked, setclicked] = useState(false)
+export const AddButton = ({ handleShowCard, clicked }: any ) => {
 
     const handleClick = () => {
-        setclicked(!clicked)
         handleShowCard()
     }
 

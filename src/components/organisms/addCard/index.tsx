@@ -6,7 +6,7 @@ import { api } from '../../../api'
 import { useDispatch } from 'react-redux'
 import { addAppointment } from '../../../redux/actions/appointments'
 
-export const AddCard = memo(({showCard, handleShowCard}: any) => {
+export const AddCard = memo(({showCard, handleShowCard, clicked, setclicked}: any) => {
     const dispatch = useDispatch()
     const [addCardData, setaddCardData] = useState({})
 
@@ -18,18 +18,17 @@ export const AddCard = memo(({showCard, handleShowCard}: any) => {
         })
     }, [setaddCardData, addCardData])
 
-    
-
     const saveData = () => {
         Object.entries(addCardData).map(index => index).length === 3 ? (
             api.post('appointments/', addCardData)
                 .then(({ data }) => {
-                    dispatch(addAppointment([data])) 
-                })            
+                    dispatch(addAppointment([data]))
+                    handleShowCard()
+                    setclicked(!clicked)
+                })
         ) : (
             window.alert('Escreva nos campos e defina uma data.')
         )
-        handleShowCard()
     }
     
     return (
