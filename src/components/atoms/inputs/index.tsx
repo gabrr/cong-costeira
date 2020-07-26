@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, memo } from 'react'
 import styled from 'styled-components'
 import { zeroAtLeft } from '../../../utils/numbers'
 
@@ -10,7 +10,7 @@ interface Props {
     action?: Function
 }
 
-export const CustomInput = (props: Props) => (
+export const CustomInput = memo((props: Props) => (
     <Div>
         <label>{props.text || ''}</label>
         <input 
@@ -19,10 +19,10 @@ export const CustomInput = (props: Props) => (
             placeholder={props.placeholder || 'Nome'} 
         />
     </Div>
-)
+))
 
 
-export const CustomDateInput = (props: Props) => {
+export const CustomDateInput = memo((props: Props) => {
     const day = zeroAtLeft(new Date().getUTCDate()) 
     const month = zeroAtLeft(new Date().getUTCMonth() + 1) 
     const year = zeroAtLeft(new Date().getFullYear()) 
@@ -40,7 +40,8 @@ export const CustomDateInput = (props: Props) => {
             <input className={props.name} onChange={handleInputChange} value={today} type="date"/>
         </Div>
     )
-}
+})
+
 const Div = styled.div`
     text-align: left;
 

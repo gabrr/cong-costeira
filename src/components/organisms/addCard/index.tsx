@@ -1,24 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState, memo, useCallback } from 'react'
 import styled from 'styled-components'
 import { CustomInput, CustomDateInput } from '../../atoms/inputs'
 import { SaveButton } from '../../atoms/saveButton'
 import { api } from '../../../api'
+import { useDispatch } from 'react-redux'
+import { addAppointment } from '../../../redux/actions/appointments'
 
-export const AddCard = ({showCard}: any) => {
+export const AddCard = memo(({showCard, handleShowCard}: any) => {
+    const dispatch = useDispatch()
     const [addCardData, setaddCardData] = useState({})
 
-    const handleAddAppointment = (data: any) => {
+    const handleAddAppointment = useCallback((data: any) => {
+
         setaddCardData({
             ...addCardData,
             ...data
         })
-    }
+    }, [setaddCardData, addCardData])
+
+    
 
     const saveData = () => {
-        api.post('appointments/', addCardData)
-            .then(data => console.log(data, 'data sent'))
+        Object.entries(addCardData).map(index => index).length === 3 ? (
+            api.post('appointments/', addCardData)
+                .then(({ data }) => {
+                    dispatch(addAppointment([data])) 
+                })            
+        ) : (
+            window.alert('Escreva nos campos e defina uma data.')
+        )
+        handleShowCard()
     }
-
+    
     return (
         <Div>
             <div className={`addCard ${showCard}`}>
@@ -30,7 +43,7 @@ export const AddCard = ({showCard}: any) => {
             </div>
         </Div>
     )
-}
+})
 
 const Div = styled.div`
     .addCard.false {

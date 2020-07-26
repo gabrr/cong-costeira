@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import styled from 'styled-components'
 
 interface Props {
@@ -7,13 +7,13 @@ interface Props {
     action: Function
 }
 
-export const SaveButton = (props: Props) => {
+export const SaveButton = memo((props: Props) => {
     return (
         <Div className={props.name || 'button'} onClick={() => props.action()}>
             {props.text}
         </Div>
     )
-}
+})
 
 const Div = styled.div`
     min-width: 100px;
@@ -23,4 +23,5 @@ const Div = styled.div`
     background: #4a5a8c;
     border-radius: 4px;
     font-size: 13px;
+    cursor: pointer;
 `
