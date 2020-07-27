@@ -8,7 +8,7 @@ import { AppointmentsType } from '../../../types/appoitments'
 import { Provider, useSelector, useDispatch } from 'react-redux'
 import store from '../../../redux'
 import { State } from '../../../redux/reducers/_types';
-import { addAppointment } from '../../../redux/actions/appointments';
+import { addAppointment, clearAppointment } from '../../../redux/actions/appointments';
 import { Loader } from '../../atoms/loader';
 
 const Home = () => {
@@ -36,8 +36,13 @@ const Home = () => {
           setloading(false)
         })
     )
-    setloading(false)
   }, [dispatch, appointments])
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearAppointment())
+    }
+  }, [dispatch])
 
   const isItTheCurrentUser = (obj: AppointmentsType) => {
     console.log(user, 'user')
