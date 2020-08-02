@@ -15,6 +15,7 @@ The sctructure is inspired by Atomic Design.
 2. Yarn
 3. MongoDB Atlas
 4. An Account on Netlify
+5. An Account on Heroku
 
 ### Start the project
 
